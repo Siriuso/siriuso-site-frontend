@@ -1,20 +1,25 @@
 <template>
   <q-layout view="hhh lpR fff">
-    <q-header reveal elevated class="bg-primary text-white" height-hint="98">
-      <q-toolbar>
+    <q-header
+      reveal
+      elevated
+      height-hint="98"
+      :class="dark ? 'container--dark' : 'container--light'"
+    >
+      <q-toolbar class="container">
         <q-toolbar-title shrink>
           <q-avatar>
             <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
           </q-avatar>
           Siriuso
         </q-toolbar-title>
-        <q-separator dark vertical inset />
+        <q-separator :dark="dark" vertical inset />
         <q-btn stretch flat label="Features" />
         <q-btn stretch flat label="News" />
         <q-btn stretch flat label="Community" />
 
         <q-btn-dropdown stretch flat label="More">
-          <q-list>
+          <q-list :dark="dark">
             <q-item clickable v-close-popup tabindex="0">
               <q-item-section avatar>
                 <q-avatar icon="folder" color="secondary" text-color="white" />
@@ -41,20 +46,27 @@
       <router-view />
     </q-page-container>
 
-    <q-footer elevated class="bg-grey-8 text-white">
-      <q-toolbar>
+    <q-footer elevated :class="dark ? 'container--dark' : 'container--light'">
+      <q-toolbar class="container">
         <q-toolbar-title>
           <q-avatar>
             <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
           </q-avatar>
           <div>Title</div>
         </q-toolbar-title>
+        <q-space />
+        <q-btn
+          :label="dark ? 'dark' : 'light'"
+          @click="$store.commit('UIstore/setDark', !dark)"
+        ></q-btn>
       </q-toolbar>
     </q-footer>
   </q-layout>
 </template>
 <script>
 import { defineComponent, ref } from "vue";
+import { mapGetters } from "vuex";
+import { LocalStorage } from "quasar";
 
 export default defineComponent({
   name: "MainLayout",
@@ -70,6 +82,13 @@ export default defineComponent({
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
     };
+  },
+  computed: {
+    ...mapGetters({ dark: "UIstore/getDark" }),
+  },
+
+  mounted() {
+    this.$store.commit("UIstore/setDark", LocalStorage.getItem("dark"));
   },
 });
 </script>

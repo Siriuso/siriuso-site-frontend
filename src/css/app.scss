@@ -1,1 +1,18 @@
 // app global css in SCSS form
+:root {
+  --container-width: 1200px;
+}
+.container {
+  max-width: var(--container-width);
+  display: flex;
+  flex-grow: 1;
+  margin: auto;
+}
+.container--light {
+  background-color: #ffffff;
+  color: #000000;
+}
+.container--dark {
+  background-color: #000000;
+  color: #ffffff;
+}
