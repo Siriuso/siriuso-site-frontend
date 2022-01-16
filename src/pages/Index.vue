@@ -111,11 +111,11 @@
 
         <q-card-section class="row flex-center">
           <q-btn
+            flat
             type="a"
             :href="item.link"
             target="_blank"
             :color="item.color"
-            flat
             v-for="(item, index) in $options.sponsored"
             :key="index"
             :label="item.img ? '' : item.label"
