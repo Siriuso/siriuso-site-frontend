@@ -39,7 +39,7 @@
               </q-item>
             </q-list>
             <q-card-actions align="center">
-              <q-btn label="More"> </q-btn>
+              <q-btn flat label="More"> </q-btn>
             </q-card-actions>
           </q-card-section>
         </q-card-section>
@@ -65,8 +65,66 @@
         </q-card-section>
       </q-card>
     </div>
-    <q-card class="features">dsgdf</q-card>
-    <q-card class="get_involved">dsgfdh</q-card>
+    <div class="full-width bg-primary">
+      <q-card class="get_involved container q-pa-none column" square flat>
+        <q-card-section>
+          <q-item>
+            <q-item-section>
+              <q-item-label class="text-h4">Get involved</q-item-label>
+            </q-item-section></q-item
+          >
+          <q-item>
+            <q-item-section>
+              <q-item-label
+                >Join the community and help create a game engine that belongs to
+                everybody</q-item-label
+              >
+            </q-item-section>
+          </q-item>
+        </q-card-section>
+        <q-card-section class="row justify-between">
+          <standart-block-card
+            v-for="i in 3"
+            :key="i"
+            class="col-4"
+          ></standart-block-card>
+        </q-card-section>
+      </q-card>
+    </div>
+    <div class="full-width bg-secondary">
+      <q-card class="get_involved container" square flat>
+        <q-card-section class="row flex-center">
+          <standart-block-card class="col-4"></standart-block-card> </q-card-section
+      ></q-card>
+    </div>
+    <div class="full-width bg-secondary">
+      <q-card class="sponsored container bg-secondary column" square flat>
+        <q-card-section>
+          <q-item>
+            <q-item-section>
+              <q-item-label class="text-h4 text-center text-primary"
+                >Sponsored</q-item-label
+              >
+            </q-item-section>
+          </q-item>
+        </q-card-section>
+
+        <q-card-section class="row flex-center">
+          <q-btn
+            type="a"
+            :href="item.link"
+            target="_blank"
+            :color="item.color"
+            flat
+            v-for="(item, index) in $options.sponsored"
+            :key="index"
+            :label="item.img ? '' : item.label"
+          >
+            <q-img v-if="item.img" :src="item.img" width="120px" fit="contain" />
+          </q-btn>
+        </q-card-section>
+      </q-card>
+    </div>
   </q-page>
 </template>
 
@@ -74,11 +132,43 @@
 import MainMessageCard from 'src/components/MainMessageCard.vue';
 import StandartBlockWithTextImg from 'src/components/StandartBlockWithTextImg.vue';
 import StartCardParallax from 'src/components/StartCardParallax.vue';
+import StandartBlockCard from 'src/components/StandartBlockCard.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  components: { StartCardParallax, MainMessageCard, StandartBlockWithTextImg },
+  components: {
+    StartCardParallax,
+    MainMessageCard,
+    StandartBlockWithTextImg,
+    StandartBlockCard,
+  },
   name: 'PageIndex',
+  sponsored: [
+    {
+      img: 'sponsored/gamblify.png',
+      label: 'BannerA',
+      color: 'deep-orange',
+      link: '#',
+    },
+    {
+      img: 'sponsored/heroiclabs.png',
+      label: 'BannerB',
+      color: 'red',
+      link: '#',
+    },
+    {
+      img: 'sponsored/spiffcode.png',
+      label: 'BannerC',
+      color: 'blue',
+      link: '#',
+    },
+    {
+      img: '',
+      label: 'BannerC',
+      color: 'green',
+      link: '#',
+    },
+  ],
   cards: [
     {
       img: 'https://cdn.quasar.dev/img/parallax2.jpg',

@@ -94,12 +94,12 @@
   </q-layout>
 </template>
 <script>
-import { defineComponent, ref } from 'vue';
-import { mapGetters } from 'vuex';
-import { LocalStorage } from 'quasar';
+import { defineComponent, ref } from "vue";
+import { mapGetters } from "vuex";
+import { LocalStorage } from "quasar";
 
 export default defineComponent({
-  name: 'MainLayout',
+  name: "MainLayout",
 
   components: {},
 
@@ -114,11 +114,11 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapGetters({ dark: 'UIstore/getDark' }),
+    ...mapGetters({ dark: "UIstore/getDark" }),
   },
 
   mounted() {
-    this.$store.commit('UIstore/setDark', LocalStorage.getItem('dark'));
+    this.$store.commit("UIstore/setDark", LocalStorage.getItem("dark"));
   },
 });
 </script>
